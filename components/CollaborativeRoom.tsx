@@ -14,6 +14,8 @@ import { updateDocument } from "@/lib/actions/room.actions";
 const CollaborativeRoom = ({
   roomId,
   roomMetadata,
+  users,
+  currentUserType,
 }: CollaborativeRoomProps) => {
   const [editing, setediting] = useState(false);
   const [loading, setloading] = useState(false);
@@ -35,7 +37,7 @@ const CollaborativeRoom = ({
       }
     }
   };
-  const currentUserType = "editor";
+
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -106,7 +108,7 @@ const CollaborativeRoom = ({
               </SignedIn>
             </div>
           </Header>
-          <Editor />
+          <Editor roomId={roomId} currentUserType={currentUserType} />
         </div>
       </ClientSideSuspense>
     </RoomProvider>
